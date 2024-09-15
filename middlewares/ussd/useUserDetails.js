@@ -12,7 +12,7 @@ export const useUserDetails = async(req,res,next) => {
             req.user = queryRes.data
         }
     }catch(error){
-        console.log(error.message)
+        console.log(error)
     }
     next()
 

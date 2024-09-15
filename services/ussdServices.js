@@ -32,6 +32,7 @@ export class USSDService {
             const response = await axios.post(`${this.domain}/api/auth/register`,{name,phone,pin})
             this.res.send(this.responses.register_end(name,phone))
         } catch (error) {
+            console.log(error)
             this.res.send(this.responses.default)
         }
     }
