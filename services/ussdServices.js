@@ -36,11 +36,14 @@ export class USSDService {
             this.res.send(this.responses.default)
         }
     }
-    checkBalanceStart = async() =>{
+    checkBalanceStart = async(user,pin) =>{
         this.res.send(this.balanceResponses.balance_start)
     }
     checkBalanceCurrency = async() =>{
         this.res.send(this.balanceResponses.balance_currency)
+    }
+    sendIncorrectPinResponse = async() =>{
+        this.res.send(this.balanceResponses.incorrect_pin)
     }
     endBalanceCheck = async({currency,amount}) =>{
         this.res.send(this.balanceResponses.balance_end(currency,amount))

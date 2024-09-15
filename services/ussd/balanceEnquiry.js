@@ -7,6 +7,7 @@ export const balanceEnquiryHandler = ({res,user,data,dataCount})=>{
         return responseHandler.checkBalanceStart()
     }
     if(dataCount === 2){
+        if(data[dataCount-1] !== user.pin) return responseHandler.sendIncorrectPinResponse()
         return responseHandler.checkBalanceCurrency()
     }
     if(dataCount === 3){
