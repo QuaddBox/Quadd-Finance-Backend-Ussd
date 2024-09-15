@@ -2,8 +2,10 @@ import axios from "axios";
 import { ussdResponses,ussdBalanceResponse } from "../lib/ussdResponses.js";
 
 export class USSDService {
-    constructor(res){
+    constructor(res,req){
         this.res = res
+        this.req = req
+        this.domain  = req.hostname 
     }
     responses = ussdResponses
     balanceResponses = ussdBalanceResponse
@@ -27,12 +29,7 @@ export class USSDService {
     }
     endRegisteration = async({name,phone,pin}) =>{
         try {
-            const response = await axios.post(`/api/auth/register`,{name,phone,pin})
-            .then(data=>data)
-            .catch(err=>{
-                console.log(err)
-                this.res.send(this.responses.default)
-            });
+            const response = await axios.post(`${this.domain}/api/auth/register`,{name,phone,pin})
             this.res.send(this.responses.register_end(name,phone))
         } catch (error) {
             this.res.send(this.responses.default)

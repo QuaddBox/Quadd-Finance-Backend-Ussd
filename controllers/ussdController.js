@@ -6,7 +6,7 @@ const UssdController = {
     index:(req,res,next)=>{
         if(req.user) return next()
 
-        const ussdServiceHandler = new USSDService(res)
+        const ussdServiceHandler = new USSDService(res,req)
         const { ussdText,ussdTextCount,payload,ussdTextArray} = req.ussdText
 
         if(ussdText === "") return ussdServiceHandler.sendWelcomeResponse(payload)
@@ -25,7 +25,7 @@ const UssdController = {
     },
 
     main:(req,res)=>{
-        const ussdServiceHandler = new USSDService(res)
+        const ussdServiceHandler = new USSDService(res,req)
         const { ussdText,ussdTextCount,ussdTextArray} = req.ussdText
         if(ussdText === "") return ussdServiceHandler.sendMainWelcomeResponse()
         if(ussdText === "1") return balanceEnquiryHandler(res,{
