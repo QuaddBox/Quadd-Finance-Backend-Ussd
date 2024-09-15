@@ -41,21 +41,6 @@ const User = mongoose.model('User', UserSchema);
 
 // Export the model as default
 // export default User;
-export const findOne = async (query) => { 
-    return await User.findOne(query);
-};
-
-export const findById = async (id) => {
-    try {
-      const user = await User.findById(id);
-      if (!user) {
-        throw new Error('User not found');
-      }
-      return user;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  };
 
 
   export default User;

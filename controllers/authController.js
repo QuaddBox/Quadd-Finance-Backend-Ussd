@@ -1,11 +1,11 @@
-import User, { findOne } from '../models/user.js';
+import User from '../models/user.js';
 import { createDid } from '../services/tbDexServices.js ';
 
 export async function register(req, res) {
   const { name, phone, pin } = req.body;
 
   try {
-    let userExists = await findOne({ phone });
+    let userExists = await User.findOne({ phone });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }

@@ -27,7 +27,12 @@ export class USSDService {
     }
     endRegisteration = async({name,phone,pin}) =>{
         try {
-            const response = await axios.post(`/api/auth/register`,{name,phone,pin});
+            const response = await axios.post(`/api/auth/register`,{name,phone,pin})
+            .then(data=>data)
+            .catch(err=>{
+                console.log(err)
+                this.res.send(this.responses.default)
+            });
             this.res.send(this.responses.register_end(name,phone))
         } catch (error) {
             this.res.send(this.responses.default)
