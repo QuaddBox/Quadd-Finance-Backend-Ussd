@@ -4,8 +4,6 @@ import { ussdResponses,ussdBalanceResponse } from "../lib/ussdResponses.js";
 export class USSDService {
     constructor(res,req){
         this.res = res
-        this.req = req
-        this.domain  = req.hostname 
     }
     responses = ussdResponses
     balanceResponses = ussdBalanceResponse
