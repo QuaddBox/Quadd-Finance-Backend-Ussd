@@ -1,9 +1,9 @@
-const { findOne } = require("../../models/user");
+import User from "../../models/user";
 
-module.exports.useUserDetails = async(req,res,next) => {
+export const useUserDetails = async(req,res,next) => {
     const {phoneNumber} = req.body;
     try{
-        const queryRes = await findOne({
+        const queryRes = await User.findOne({
             phoneNumber
         })
         if(queryRes.data){
