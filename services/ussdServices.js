@@ -32,7 +32,7 @@ export class USSDService {
             const did = await createDid();
             const newUser = new User({ name, phoneNumber, did, pin });
             await newUser.save();
-            this.res.send(this.responses.register_end(name,phone))
+            this.res.send(this.responses.register_end(name,phoneNumber))
         } catch (error) {
             console.log(error)
             this.res.send(this.responses.default)
