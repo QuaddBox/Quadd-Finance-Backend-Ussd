@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -41,11 +41,11 @@ const User = mongoose.model('User', UserSchema);
 
 // Export the model as default
 // export default User;
-const findOne = async (query) => {
+export const findOne = async (query) => { 
     return await User.findOne(query);
 };
 
-const findById = async (id) => {
+export const findById = async (id) => {
     try {
       const user = await User.findById(id);
       if (!user) {
@@ -58,6 +58,4 @@ const findById = async (id) => {
   };
 
 
-module.exports = User;
-module.exports.findOne = findOne;
-module.exports.findById = findById;
+  export default User;

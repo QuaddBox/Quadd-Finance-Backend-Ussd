@@ -1,4 +1,4 @@
-module.exports.useUssdText = (req,res,next)=>{
+export const useUssdText = (req,res,next)=>{
     const ussdText = req.body.text
     const ussdTextArray = ussdText.split("*")
     const ussdTextCount = ussdTextArray.length

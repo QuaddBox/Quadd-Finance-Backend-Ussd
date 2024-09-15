@@ -1,48 +1,45 @@
-const { default: axios } = require("axios")
-const { ussdResponses,ussdBalanceResponse } = require("../lib/ussdResponses")
-const { UserLocalModel } = require("../models/localDb/users")
+import axios from "axios";
+import { ussdResponses,ussdBalanceResponse } from "../lib/ussdResponses.js";
 
-const USSDService = function (res) {
-    this.res = res
-    this.responses = ussdResponses
-    this.balanceResponses = ussdBalanceResponse
-    this.sendWelcomeResponse = ()=>{
+export class USSDService {
+    constructor(res){
+        this.res = res
+    }
+    responses = ussdResponses
+    balanceResponses = ussdBalanceResponse
+
+    sendWelcomeResponse = async()=>{
         return this.res.send(this.responses.welcome)
     }
-    this.sendMainWelcomeResponse=()=>{
+    sendMainWelcomeResponse=()=>{
         this.res.send(this.balanceResponses.welcome)
     }
-    this.handleRegisterDefault = async(payload) =>{
+    handleRegisterDefault = async(payload) =>{
         console.log({payload})
         this.res.send(this.responses.register_default)
     }
-    this.handleRegisterPhone = async(payload) =>{
+    handleRegisterPhone = async(payload) =>{
         console.log({payload})
         this.res.send(this.responses.register_phone)
     }
-    this.handleRegisterPin = async(payload) =>{
+    handleRegisterPin = async(payload) =>{
         this.res.send(this.responses.register_pin)
     }
-    this.endRegisteration = async({name,phone,pin}) =>{
+    endRegisteration = async({name,phone,pin}) =>{
         try {
-            const apiRes = await axios.post("/", {name,phone,pin})
-            console.log(apiRes)
+            const response = await axios.post(`/api/auth/register`,{name,phone,pin});
             this.res.send(this.responses.register_end(name,phone))
         } catch (error) {
-            console.log(error)
             this.res.send(this.responses.default)
         }
-
     }
-    this.checkBalanceStart = async() =>{
+    checkBalanceStart = async() =>{
         this.res.send(this.balanceResponses.balance_start)
     }
-    this.checkBalanceCurrency = async() =>{
+    checkBalanceCurrency = async() =>{
         this.res.send(this.balanceResponses.balance_currency)
     }
-    this.endBalanceCheck = async({currency}) =>{
+    endBalanceCheck = async({currency}) =>{
         this.res.send(this.balanceResponses.balance_end(currency))
     }
 }
-
-module.exports.USSDService = USSDService

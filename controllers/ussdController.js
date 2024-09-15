@@ -1,8 +1,8 @@
-const { balanceEnquiryHandler } = require("../services/ussd/balanceEnquiry")
-const { USSDService } = require("../services/ussdServices")
+import { balanceEnquiryHandler } from "../services/ussd/balanceEnquiry.js"
+import { USSDService } from "../services/ussdServices.js"
 
 
-module.exports = {
+const UssdController = {
     index:(req,res,next)=>{
         if(req.user) return next()
 
@@ -36,3 +36,5 @@ module.exports = {
     }
 
 }
+
+export default UssdController;

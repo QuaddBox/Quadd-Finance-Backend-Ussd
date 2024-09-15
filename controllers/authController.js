@@ -1,5 +1,5 @@
 import User, { findOne } from '../models/user.js';
-import { createDid } from '../services/tbDexService.js';
+import { createDid } from '../services/tbDexServices.js ';
 
 export async function register(req, res) {
   const { name, phone, pin } = req.body;
