@@ -8,8 +8,8 @@ export const useUserDetails = async(req,res,next) => {
             phoneNumber
         })
         console.log(queryRes);
-        if(queryRes && queryRes.data){
-            req.user = queryRes.data
+        if(queryRes){
+            req.user = queryRes
         }
     }catch(error){
         console.log(error)
