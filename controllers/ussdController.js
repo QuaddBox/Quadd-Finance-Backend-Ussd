@@ -29,7 +29,7 @@ const UssdController = {
         const { ussdText,ussdTextCount,ussdTextArray} = req.ussdText
         //console.log({ussdText,ussdTextCount,ussdTextArray})
         if(ussdText === "") return ussdServiceHandler.sendMainWelcomeResponse()
-        f(ussdText === "1") return await balanceEnquiryHandler({    
+        if(ussdTextCount >= 1) return await balanceEnquiryHandler({
             res,
             data:ussdTextArray,
             dataCount:ussdTextCount,
