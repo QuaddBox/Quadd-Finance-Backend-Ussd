@@ -1,6 +1,6 @@
-const { USSDService } = require("../ussdServices")
+import { USSDService } from "../ussdServices.js"
 
-module.exports.balanceEnquiryHandler = ({res,user,data,dataCount})=>{       
+export const balanceEnquiryHandler = ({res,user,data,dataCount})=>{
     const responseHandler = new USSDService(res)
     if(dataCount === 1){
         return responseHandler.checkBalanceStart()
