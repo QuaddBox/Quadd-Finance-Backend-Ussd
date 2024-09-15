@@ -1,4 +1,4 @@
-import User from "../../models/user";
+import User from "../../models/user.js";
 
 export const useUserDetails = async(req,res,next) => {
     const {phoneNumber} = req.body;
