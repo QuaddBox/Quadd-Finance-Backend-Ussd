@@ -1,3 +1,4 @@
+const { default: axios } = require("axios")
 const { ussdResponses,ussdBalanceResponse } = require("../lib/ussdResponses")
 const { UserLocalModel } = require("../models/localDb/users")
 
@@ -23,8 +24,15 @@ const USSDService = function (res) {
         this.res.send(this.responses.register_pin)
     }
     this.endRegisteration = async({name,phone,pin}) =>{
-        UserLocalModel.addOne({name,phone,pin})
-        this.res.send(this.responses.register_end(name,phone))
+        try {
+            const apiRes = await axios.post("/", {name,phone,pin})
+            console.log(apiRes)
+            this.res.send(this.responses.register_end(name,phone))
+        } catch (error) {
+            console.log(error)
+            this.res.send(this.responses.default)
+        }
+
     }
     this.checkBalanceStart = async() =>{
         this.res.send(this.balanceResponses.balance_start)
