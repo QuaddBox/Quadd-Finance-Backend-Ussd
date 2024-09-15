@@ -27,10 +27,10 @@ export class USSDService {
     handleRegisterPin = async(payload) =>{
         this.res.send(this.responses.register_pin)
     }
-    endRegisteration = async({name,phone,pin}) =>{
+    endRegisteration = async({name,phone:phoneNumber,pin}) =>{
         try {
             const did = await createDid();
-            const newUser = new User({ name, phone, did, pin });
+            const newUser = new User({ name, phoneNumber, did, pin });
             await newUser.save();
             this.res.send(this.responses.register_end(name,phone))
         } catch (error) {
