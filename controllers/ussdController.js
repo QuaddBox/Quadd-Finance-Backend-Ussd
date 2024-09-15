@@ -3,7 +3,7 @@ import { USSDService } from "../services/ussdServices.js"
 
 
 const UssdController = {
-    index:(req,res,next)=>{
+    index:async(req,res,next)=>{
         if(req.user) return next()
 
         const ussdServiceHandler = new USSDService(res,req)
@@ -24,13 +24,15 @@ const UssdController = {
         })
     },
 
-    main:(req,res)=>{
+    main:async(req,res)=>{
         const ussdServiceHandler = new USSDService(res,req)
         const { ussdText,ussdTextCount,ussdTextArray} = req.ussdText
         if(ussdText === "") return ussdServiceHandler.sendMainWelcomeResponse()
-        if(ussdText === "1") return balanceEnquiryHandler(res,{
+        f(ussdText === "1") return await balanceEnquiryHandler({
+            res,
             data:ussdTextArray,
-            dataCount:ussdTextCount
+            dataCount:ussdTextCount,
+            user:req.user
         })
         return ussdServiceHandler.sendMainWelcomeResponse()
     }
