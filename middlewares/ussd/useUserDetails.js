@@ -8,7 +8,7 @@ export const useUserDetails = async(req,res,next) => {
         if(queryRes){
             req.user = queryRes
             console.log({
-                pin:user.pin
+                pin:queryRes.pin
             })
         }
     }catch(error){

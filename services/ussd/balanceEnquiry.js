@@ -1,6 +1,6 @@
 import { USSDService } from "../ussdServices.js"
 
-export const balanceEnquiryHandler = ({res,user,data,dataCount})=>{
+export const balanceEnquiryHandler = async ({res,user,data,dataCount})=>{
     console.log({user,dataCount})
     const responseHandler = new USSDService(res)
     if(dataCount === 1){
@@ -12,7 +12,8 @@ export const balanceEnquiryHandler = ({res,user,data,dataCount})=>{
     }
     if(dataCount === 3){
         return responseHandler.endBalanceCheck({
-            currency:data[2]
+            currency:data[2],
+            amount:user.balance
         })
     }
 }
