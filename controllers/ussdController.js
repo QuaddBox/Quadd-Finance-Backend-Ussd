@@ -1,4 +1,5 @@
 import { balanceEnquiryHandler } from "../services/ussd/balanceEnquiry.js"
+import { transferHandler } from "../services/ussd/transfer.js"
 import { USSDService } from "../services/ussdServices.js"
 
 
@@ -27,15 +28,12 @@ const UssdController = {
     main:async(req,res)=>{
         const ussdServiceHandler = new USSDService(res,req)
         const { ussdText,ussdTextCount,ussdTextArray} = req.ussdText
-        //console.log({ussdText,ussdTextCount,ussdTextArray})
-        if(ussdText === "") return ussdServiceHandler.sendMainWelcomeResponse()
-        if(ussdTextCount >= 1) return await balanceEnquiryHandler({
-            res,
-            data:ussdTextArray,
-            dataCount:ussdTextCount,
-            user:req.user
-        })
         
+         const data = { res,data:ussdTextArray,dataCount:ussdTextCount,user:req.user}
+         // console.log({ussdText,ussdTextCount,ussdTextArray})
+        if(ussdTextCount >=2 ) return await transferHandler(data)
+            if(ussdTextCount >= 1) return await balanceEnquiryHandler(data)
+        if(ussdText === "") return ussdServiceHandler.sendMainWelcomeResponse()
     }
 
 }
