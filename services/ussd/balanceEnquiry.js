@@ -1,7 +1,7 @@
 import { USSDService } from "../ussdServices.js"
 
 export const balanceEnquiryHandler = ({res,user,data,dataCount})=>{
-    console.log({user,data,dataCount})
+    console.log({user,dataCount})
     const responseHandler = new USSDService(res)
     if(dataCount === 1){
         return responseHandler.checkBalanceStart()

@@ -42,7 +42,7 @@ export class USSDService {
     checkBalanceCurrency = async() =>{
         this.res.send(this.balanceResponses.balance_currency)
     }
-    endBalanceCheck = async({currency}) =>{
-        this.res.send(this.balanceResponses.balance_end(currency))
+    endBalanceCheck = async({currency,amount}) =>{
+        this.res.send(this.balanceResponses.balance_end(currency,amount))
     }
 }

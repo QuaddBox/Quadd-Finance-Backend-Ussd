@@ -27,7 +27,7 @@ const UssdController = {
     main:async(req,res)=>{
         const ussdServiceHandler = new USSDService(res,req)
         const { ussdText,ussdTextCount,ussdTextArray} = req.ussdText
-        console.log({ussdText,ussdTextCount,ussdTextArray})
+        //console.log({ussdText,ussdTextCount,ussdTextArray})
         if(ussdText === "") return ussdServiceHandler.sendMainWelcomeResponse()
         f(ussdText === "1") return await balanceEnquiryHandler({    
             res,
