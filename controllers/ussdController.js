@@ -29,7 +29,11 @@ const UssdController = {
         const ussdServiceHandler = new USSDService(res,req)
         const { ussdText,ussdTextCount,ussdTextArray} = req.ussdText
         
-         const data = { res,data:ussdTextArray,dataCount:ussdTextCount,user:req.user}
+         const data = { res,
+            data:ussdTextArray,
+            dataCount:ussdTextCount,
+            user:req.user
+        }
          // console.log({ussdText,ussdTextCount,ussdTextArray})
         if(ussdTextCount >=2 ) return await transferHandler(data)
             if(ussdTextCount >= 1) return await balanceEnquiryHandler(data)
