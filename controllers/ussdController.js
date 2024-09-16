@@ -34,9 +34,15 @@ const UssdController = {
             dataCount:ussdTextCount,
             user:req.user
         }
-         // console.log({ussdText,ussdTextCount,ussdTextArray})
-        if(ussdTextCount >=2 ) return await transferHandler(data)
-            if(ussdTextCount >= 1) return await balanceEnquiryHandler(data)
+         
+         if(ussdTextArray[0] === "2" ) {
+            console.log("transfer")
+            return await transferHandler(data)
+        }
+        if(ussdTextArray[0] === "1") {
+            console.log("balance")
+            return await balanceEnquiryHandler(data)
+        }
         if(ussdText === "") return ussdServiceHandler.sendMainWelcomeResponse()
     }
 
