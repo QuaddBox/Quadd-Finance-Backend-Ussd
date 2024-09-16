@@ -1,4 +1,3 @@
-import { currencies } from "../../lib/currencies.js"
 import User from "../../models/user.js"
 import { USSDService } from "../ussdServices.js"
 
